@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const router = express.Router()
-var logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 
@@ -21,7 +20,6 @@ app.use(function(req, res, next) {
 
 
 app.use(express.static('./client/'));
-app.use(logger('dev'));
 app.get('*', function(req, res) {
   res.sendFile(__dirname+'/client/index.html');
 });
