@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 // app.get('/', function(req, res) {
 //   res.sendFile(__dirname+'/client/build/index.html');
 // });
-
+console.log("Database_URL", process.env.DATABASE_URL);
 //Static file declaration
 app.use(express.static(path.join(__dirname, 'client/build')));
 //production mode
