@@ -42,7 +42,7 @@ export default class EventsandStatsDisplay extends Component {
 
     async fetchData() {
         const { state } = this;
-        const res = await axios.get(`api/${state.selectedData}/${state.dayView ? 'daily' : 'hourly'}`);
+        const res = await axios.get(`${state.selectedData}/${state.dayView ? 'daily' : 'hourly'}`);
         // const res = await axios.get(`http://localhost:5555/${state.selectedData}/${state.dayView ? 'daily' : 'hourly'}`);
         const data = res.data
         if (state.dayView) {

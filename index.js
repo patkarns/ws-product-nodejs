@@ -7,8 +7,6 @@ const indexRouter = require('./routes/index');
 
 require('dotenv').config()
 
-
-
 app.use(router)
 
 app.use('/', indexRouter);
