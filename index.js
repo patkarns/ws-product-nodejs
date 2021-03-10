@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 // app.get('/', function(req, res) {
 //   res.sendFile(__dirname+'/client/build/index.html');
 // });
-console.log("PG Database", process.env.PGDATABASE);
+
 //Static file declaration
 app.use(express.static(path.join(__dirname, 'client/build')));
 //production mode
@@ -30,11 +30,13 @@ if(process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
   //
   app.get('*', (req, res) => {
+    console.log("get *")
     res.sendfile(path.join(__dirname = 'client/build/index.html'));
   })
 }
 //build mode
 app.get('*', (req, res) => {
+  console.log("get *")
   res.sendFile(path.join(__dirname+'/client/public/index.html'));
 })
 
