@@ -39,7 +39,7 @@ export default class TableDisp extends Component {
 
     async fetchData() {
         const { state } = this;
-        let endPoint = `${state.selectedData}`;
+        let endPoint = `/server/${state.selectedData}`;
         // let endPoint = `http://localhost:5555/${state.selectedData}`;
         if (state.selectedData !== 'poi') endPoint = `${endPoint}/${state.dayView ? 'daily' : 'hourly'}`;
 

@@ -35,7 +35,7 @@ export default class MapDisp extends Component {
 
     async fetchData() {
         await this.setState({ ...this.state, isLoading: true });
-        const endPoint = `poi`;
+        const endPoint = `/server/poi`;
         // let endPoint = `http://localhost:5555/poi`;
 
         const res = await axios.get(endPoint);
