@@ -18,10 +18,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-app.use(express.static('./client/'));
+app.use(express.static('./client/build/'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.get('*', function(req, res) {
-  res.sendFile(__dirname+'/client/index.html');
+  res.sendFile(__dirname+'/client/build/index.html');
 });
 
 app.listen(process.env.PORT || 5555, (err) => {
