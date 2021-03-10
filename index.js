@@ -48,7 +48,6 @@ app.get('/server/events/daily', (req, res, next) => {
 }, queryHandler)
 
 app.get('/server/stats/hourly', (req, res, next) => {
-  console.log('stats h')
   req.sqlQuery = `
     SELECT date, hour, impressions, clicks, revenue
     FROM public.hourly_stats
@@ -59,7 +58,6 @@ app.get('/server/stats/hourly', (req, res, next) => {
 }, queryHandler)
 
 app.get('/server/stats/daily', (req, res, next) => {
-  console.log('stats h')
   req.sqlQuery = `
     SELECT date,
         SUM(impressions) AS impressions,
@@ -74,7 +72,6 @@ app.get('/server/stats/daily', (req, res, next) => {
 }, queryHandler)
 
 app.get('/server/poi', (req, res, next) => {
-  console.log('poi')
   req.sqlQuery = `
     SELECT *
     FROM public.poi;
@@ -83,12 +80,11 @@ app.get('/server/poi', (req, res, next) => {
 }, queryHandler)
 
 app.get('/server/', (req, res) => {
-  console.log("EQ REQ", req)
   res.send('Welcome to EQ Works 😎')
 })
 
 
-//Used only in local development where there is no build step.
+// Local development (no build step)
 if(process.env.NODE_ENV != "production"){
   //tell a route making a GET request on the root (/) URL to head to the HomePage
   app.get("/server/", (request, response) => {
@@ -97,45 +93,28 @@ if(process.env.NODE_ENV != "production"){
       //response.json({ info: "Server running on Node.js, Express, and Postgres API" });
   });
 
-  //Static file declaration, which is the location of the React app
-  //Used in deployment by React app to access index.js
+  // Static file declaration
   app.use(express.static(path.join(__dirname, 'client'))); 
 
-  //Put this last among all routes. Otherwise, it will return HTML to all fetch requests and trip up CORS. They interrupt each other
-  // For any request that doesn't match, this sends the index.html file from the client. This is used for all of our React code.
-  //Eliminates need to set redirect in package.json at start script with concurrently
+  
   app.get('*', (req, res) => {  
-    console.log('dirName', __dirname, path.join(__dirname+'/client/public/index.html'));
-    // res.sendFile(__dirname+'/client/build/index.html');
-    console.log(req.originalUrl)
-      res.sendFile(path.join(__dirname+'/client/public/index.html'));
+    res.sendFile(path.join(__dirname+'/client/public/index.html'));
   })
 }
 //Only used in production, since I do not build before running in development
 if(process.env.NODE_ENV == "production"){
-  //tell a route making a GET request on the root (/) URL to head to the HomePage
+  
   app.get("/server/", (request, response) => {
-      if (error) {
-          throw error
-      }
-      response.sendFile(__dirname + '/client/build/index.html');
-      //response.send("Server running on Node.js, Express, and Postgres API")
-      //response.json({ info: "Server running on Node.js, Express, and Postgres API" });
+    response.sendFile(__dirname + '/client/build/index.html');
   })
 
-  //Static file declaration, which is the location of the React app
-  //Used in deployment by React app to access index.js
+  //Static file declaration
   app.use(express.static(path.join(__dirname, 'client/build'))); 
 
-  //Put this last among all routes. Otherwise, it will return HTML to all fetch requests and trip up CORS. They interrupt each other
-  // For any request that doesn't match, this sends the index.html file from the client. This is used for all of our React code.
-  //Eliminates need to set redirect in package.json at start script with concurrently
   app.get('*', (req, res) => {  
       res.sendFile(path.join(__dirname+'/client/build/index.html'));
   })
 }
-
-
 
 app.listen(process.env.PORT || 5555, (err) => {
   if (err) {

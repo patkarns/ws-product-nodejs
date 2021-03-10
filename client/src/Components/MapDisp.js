@@ -6,7 +6,6 @@ import CloudsMarkerColors from './ColorConstants/CloudsMarkerColors';
 
 // Components
 import Map from './Map';
-
 import axios from 'axios';
 import reverse from 'reverse-geocode';
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Brush } from 'recharts';
 import Grid from '@material-ui/core/Grid';
 
 // Components
