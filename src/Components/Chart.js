@@ -59,13 +59,13 @@ export default class Chart extends Component {
                 data[index].formattedUNIX = moment(dataObject.date).unix();
             });
         }
-        
         await this.setState({ ...this.state, data});
     }
 
 
     async handleDataSelection(selectedData) {
         await this.setState({ ...this.state, selectedData });
+
         await this.fetchData();
     }
 
@@ -86,7 +86,6 @@ export default class Chart extends Component {
 
         const { revenue, clicks, impressions } = state.selectedCategories;
         let dualAxis = statsMode && (revenue || clicks) && impressions;
- 
         return (
             <div>
                 <Grid container spacing={3}>
@@ -132,7 +131,7 @@ export default class Chart extends Component {
           {!dualAxis && statsMode && clicks && <Bar dataKey="clicks" fill={ChartColors.PRIMARY} />}
           {!dualAxis && statsMode && impressions && <Bar dataKey="impressions" fill={ChartColors.SECONDARY} />}
 
-          {(state.selectedData !== 'stats') && <Bar dataKey="# events" fill={ChartColors.SECONDARY} />}
+          {(state.selectedData !== 'stats') && <Bar dataKey="events" fill={ChartColors.SECONDARY} />}
             
           }
           <div> Adjust Timeframe:</div>

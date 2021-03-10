@@ -71,7 +71,7 @@ export default class TableDisp extends Component {
 
 
     async handleDataSelection(selectedData) {
-        await this.setState({ ...this.state, selectedData });
+        await this.setState({ ...this.state, selectedData, dayView: true });
         await this.fetchData();
     }
 

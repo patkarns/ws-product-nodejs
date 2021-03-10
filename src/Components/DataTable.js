@@ -9,16 +9,16 @@ const eventsCols = [
 
 const statsCols = [
   { field: 'formattedDate', title: 'Date', flex: 1 },
-  { field: 'impressions', title: 'Impressions', type: 'number', flex: 1},
-  { field: 'clicks', title: 'Clicks', type: 'number', flex: 1 },
-  { field: 'revenue', title: 'Revenue', type: 'number', flex: 1 },
+  { field: 'impressions', title: 'Impressions', type: 'numeric', flex: 1},
+  { field: 'clicks', title: 'Clicks', type: 'numeric', flex: 1 },
+  { field: 'revenue', title: 'Revenue', type: 'numeric', flex: 1 },
 ]
 
 const poiCols = [
     { field: 'poi_id', title: 'ID', flex: 1 },
     { field: 'name', title: 'Name', type: 'string', flex: 1 },
-    { field: 'lat', title: 'Lat', type: 'number', flex: 1},
-    { field: 'lon', title: 'Lon', type: 'number', flex: 1 },
+    { field: 'lat', title: 'Lat', type: 'numeric', flex: 1},
+    { field: 'lon', title: 'Lon', type: 'numeric', flex: 1 },
   ]
 
 export default function DataTable(props) {
