@@ -20,10 +20,10 @@ app.use(function(req, res, next) {
 });
 
 
-app.use(express.static('./client/build/'));
+app.use(express.static('./client/'));
 app.use(logger('dev'));
 app.get('*', function(req, res) {
-  res.sendFile(__dirname+'/client/build/index.html');
+  res.sendFile(__dirname+'/client/index.html');
 });
 
 app.listen(process.env.PORT || 5555, (err) => {
