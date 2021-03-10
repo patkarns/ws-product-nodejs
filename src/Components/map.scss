@@ -1,0 +1,39 @@
+
+
+.map-container{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 1em;
+
+  .map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .control-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 320px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    padding: 24px 24px;
+    margin: 20px;
+    font-size: 13px;
+    line-height: 2;
+    color: #6b6b76;
+    outline: none;
+    text-align: left;
+
+    .legend-label {
+      padding-top: 3em;
+    }
+  }
+}
