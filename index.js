@@ -18,8 +18,10 @@ const queryHandler = (req, res, next) => {
   }).catch(next)
 }
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use(rateLimiter) // middleware to limit requests
-app.use(bodyParser.json())
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -79,42 +81,16 @@ app.get('/server/poi', (req, res, next) => {
   return next()
 }, queryHandler)
 
-app.get('/server/', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to EQ Works 😎')
 })
 
-
-// Local development (no build step)
-if(process.env.NODE_ENV != "production"){
-  //tell a route making a GET request on the root (/) URL to head to the HomePage
-  app.get("/server/", (request, response) => {
-      response.sendFile(__dirname + '/client/public/index.html');
-      //response.send("Server running on Node.js, Express, and Postgres API")
-      //response.json({ info: "Server running on Node.js, Express, and Postgres API" });
-  });
-
-  // Static file declaration
-  app.use(express.static(path.join(__dirname, 'client'))); 
-
-  
-  app.get('*', (req, res) => {  
-    res.sendFile(path.join(__dirname+'/client/public/index.html'));
-  })
-}
-//Only used in production, since I do not build before running in development
-if(process.env.NODE_ENV == "production"){
-  
-  app.get("/server/", (request, response) => {
-    response.sendFile(__dirname + '/client/build/index.html');
-  })
-
-  //Static file declaration
-  app.use(express.static(path.join(__dirname, 'client/build'))); 
-
-  app.get('*', (req, res) => {  
-      res.sendFile(path.join(__dirname+'/client/build/index.html'));
-  })
-}
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  if (process.env.NODE_ENV === 'production') res.sendFile(path.join(__dirname+'/client/public/index.html'));
+  else res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 app.listen(process.env.PORT || 5555, (err) => {
   if (err) {
