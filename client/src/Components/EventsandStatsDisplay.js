@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Brush } from 'recharts';
 import Grid from '@material-ui/core/Grid';
 
 // Components
@@ -42,7 +41,7 @@ export default class EventsandStatsDisplay extends Component {
 
     async fetchData() {
         const { state } = this;
-        const res = await axios.get(`${state.selectedData}/${state.dayView ? 'daily' : 'hourly'}`);
+        const res = await axios.get(`/server/${state.selectedData}/${state.dayView ? 'daily' : 'hourly'}`);
         // const res = await axios.get(`http://localhost:5555/${state.selectedData}/${state.dayView ? 'daily' : 'hourly'}`);
         const data = res.data
         if (state.dayView) {

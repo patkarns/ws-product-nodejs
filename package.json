@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "server": "nodemon index.js --ignore client",
     "dev": "nodemon index.js",
-    "heroku-postbuild": "npm install && cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.15.3",
+    "http-proxy-middleware": "^1.0.6",
     "moment": "^2.29.1",
     "pg": "^6.2.4"
   },

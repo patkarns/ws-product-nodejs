@@ -6,7 +6,6 @@ import CloudsMarkerColors from './ColorConstants/CloudsMarkerColors';
 
 // Components
 import Map from './Map';
-
 import axios from 'axios';
 import reverse from 'reverse-geocode';
 
@@ -35,7 +34,7 @@ export default class MapDisp extends Component {
 
     async fetchData() {
         await this.setState({ ...this.state, isLoading: true });
-        const endPoint = `poi`;
+        const endPoint = `/server/poi`;
         // let endPoint = `http://localhost:5555/poi`;
 
         const res = await axios.get(endPoint);

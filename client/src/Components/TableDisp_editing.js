@@ -21,7 +21,7 @@ export default function TableDisp(props) {
 
     useEffect(() => {
         async function fetchData() {
-            let endPoint = `${selectedData}`;
+            let endPoint = `/server/${selectedData}`;
             // let endPoint = `http://localhost:5555/${selectedData}`;
             if (selectedData !== 'poi') endPoint = `${endPoint}/${dayView ? 'daily' : 'hourly'}`;
     

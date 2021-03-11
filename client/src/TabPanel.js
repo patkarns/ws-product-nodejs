@@ -9,7 +9,6 @@ import Box from '@material-ui/core/Box';
 import Chart from './Components/Chart';
 import TableDisp from './Components/TableDisp';
 import MapDisp from './Components/MapDisp';
-import EventsandStatsDisplay from './Components/EventsandStatsDisplay';
 
 function TabPanel(props) {
   const { children, value, index, removeBoxPadding, ...other } = props;
@@ -76,7 +75,6 @@ export default function SimpleTabs() {
         <TableDisp/>
       </TabPanel>
       <TabPanel value={value} index={2} removeBoxPadding={true}>
-      
         <MapDisp/>
       </TabPanel>
     </div>
